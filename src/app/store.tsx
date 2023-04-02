@@ -1,12 +1,25 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, PreloadedState } from '@reduxjs/toolkit'
+import { beerApi } from './beerApiSlice'
 
 export const store = configureStore({
     reducer: {
-
+        [beerApi.reducerPath]: beerApi.reducer,
     },
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(beerApi.middleware),
 })
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
+export const setupStore = (preloadedState?: PreloadedState<Partial<RootState>>) => {
+    return configureStore({
+        reducer: {
+            [beerApi.reducerPath]: beerApi.reducer,
+        },
+        middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat(beerApi.middleware),
+      preloadedState
+    })
+  }
+
 export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppStore = ReturnType<typeof setupStore>
 export type AppDispatch = typeof store.dispatch
