@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { store } from './app/store'
 import {Provider} from "react-redux";
@@ -12,6 +11,7 @@ import {
 } from "react-router-dom";
 import BeerDetails from './components/BeerDetails';
 import ErrorPage from './components/ErrorPage';
+import BeerList from './components/BeerList';
 
 
 const root = ReactDOM.createRoot(
@@ -21,7 +21,7 @@ const root = ReactDOM.createRoot(
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <BeerList/>,
     errorElement: <ErrorPage />,
   },
   {

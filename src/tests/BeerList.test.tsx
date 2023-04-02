@@ -1,13 +1,14 @@
 import React, { PropsWithChildren } from 'react';
 import { render, RenderOptions, screen } from '@testing-library/react';
-import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { PreloadedState } from '@reduxjs/toolkit';
-import { AppStore, RootState, setupStore } from './app/store';
+
 import { Provider } from 'react-redux';
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
-import { beerApiResponse } from './testingData';
+import { beerApiResponse } from '../testingData';
+import BeerList from '../components/BeerList';
+import { AppStore, RootState, setupStore } from '../app/store';
 
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
@@ -52,13 +53,13 @@ afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
 test('renders title', () => {
-  renderWithProviders(<App />);
+  renderWithProviders(<BeerList />);
   const titleElement = screen.getByText(/beers/i);
   expect(titleElement).toBeInTheDocument();
 });
 
 test('renders first page of beer list with 12 beers', async () => {
-  renderWithProviders(<App />);
+  renderWithProviders(<BeerList />);
   const beerCards = await screen.findAllByRole(/beerCard/i);
   expect(beerCards.length).toBe(12)
 });
