@@ -37,7 +37,7 @@ const BeerList = ()=>{
     return(
         <>
         <Container>
-           <Typography variant='h1' marginTop='50px' marginBottom='50px' color='GrayText'>Beers</Typography>
+           <Typography variant='h1' marginTop='50px' marginBottom='50px' color='GrayText' textAlign='center'>Beers</Typography>
         </Container>
         {error && <Stack alignItems="center" marginTop='50px'>Sorry something went wrong</Stack>}
         {isLoading && <Stack alignItems="center" marginTop='50px'><CircularProgress /></Stack>}
@@ -55,11 +55,11 @@ const BeerList = ()=>{
                         title={beer.name}
                     />
                     <CardContent sx={{minHeight: 150}}>
-                        <Typography  variant="h6" component="div" marginBottom='20px'  >
+                        <Typography  variant="h6" component="div" marginBottom='20px' textAlign='center' >
                         {beer.name.length < 18? beer.name:beer.name.substring(0,18)+'...'}
                         </Typography>
                         <Divider><BoltIcon/></Divider>
-                        <Typography variant="subtitle1" color="text.secondary" marginTop='20px'>
+                        <Typography variant="subtitle1" color="text.secondary" marginTop='20px' textAlign='center'>
                         {beer.tagline.length < 45? beer.tagline:beer.tagline.substring(0,45)+'...'}
                         </Typography>
                     </CardContent>
