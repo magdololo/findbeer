@@ -1,5 +1,5 @@
 import { ErrorResponse } from "@remix-run/router";
-import { isRouteErrorResponse, useRouteError } from "react-router-dom";
+import {  useRouteError } from "react-router-dom";
 
 export default function ErrorPage() {
   const error  = useRouteError() as ErrorResponse;
